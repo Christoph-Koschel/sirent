@@ -1,5 +1,6 @@
 import json
-from datetime import datetime
+
+from sirent import get_time
 
 
 def get_conf():
@@ -33,7 +34,3 @@ def write_log(flag, text):
 
             log.write("[{0}]::{1}->{2}\n".format(get_time(), flag, text))
             log.close()
-
-
-def get_time():
-    return datetime.now().strftime("%H:%M:%S")
