@@ -1,4 +1,6 @@
 from discord.ext import commands
+
+import security_p
 from sirent.fs import *
 from dotenv import load_dotenv
 import sirent.player
@@ -18,6 +20,8 @@ async def on_ready():
 
 @client.command(name="ping")
 async def _ping(ctx):
+    if not security_p.has_permission(ctx):
+        return
     write_cmd("ping")
     ping_ = client.latency
     ping = round(ping_ * 1000)
@@ -27,6 +31,8 @@ async def _ping(ctx):
 
 @client.command(name="time")
 async def _time(ctx):
+    if not security_p.has_permission(ctx):
+        return
     write_cmd("time")
     await ctx.channel.send(get_time())
 
