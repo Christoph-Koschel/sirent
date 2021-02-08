@@ -1,6 +1,5 @@
 import json
-
-from sirent import get_time
+from sirent.stat import get_time
 
 
 def get_conf():

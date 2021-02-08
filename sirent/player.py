@@ -1,8 +1,8 @@
-from administration import *
 import discord
 import subprocess
 import os
 import security
+from sirent import write_cmd, write_log
 
 
 class AudioPlayer:
