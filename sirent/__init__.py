@@ -7,27 +7,15 @@ from sirent.player import AudioPlayer
 from sirent.information import Information
 from sirent.stat import get_time
 
-player = ""
-information = ""
-
-
-def load_sections(client):
-    global player, information
-    player = ""
-    information = ""
-    conf = get_conf()
-
-    if conf["security"]["module"]["player"]:
-        player = AudioPlayer(client)
-    if conf["security"]["module"]["information"]:
-        information = Information(client)
-
 
 def main():
     conf = get_conf()
     load_dotenv()
     client = commands.Bot(command_prefix=conf["prefix"])
-    load_sections(client)
+    if conf["security"]["module"]["player"]:
+        AudioPlayer(client)
+    if conf["security"]["module"]["information"]:
+        Information(client)
 
     @client.command(name="permission")
     async def _permission(ctx, level=""):
