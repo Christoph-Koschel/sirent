@@ -7,6 +7,11 @@ def get_conf():
         return json.loads(file.read())
 
 
+def set_conf(conf):
+    with open("../assets/conf/conf.json", mode="w") as file:
+        file.write(json.dumps(conf, indent=4, sort_keys=True))
+
+
 def start_log(client):
     with open("../assets/log/debug.log", mode="a") as log:
         log.write("---------" + str(get_time()) + "---------\n")

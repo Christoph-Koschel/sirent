@@ -11,14 +11,14 @@ class AudioPlayer:
 
         @client.command(name="stop")
         async def _stop(ctx):
-            if not security.has_permission(ctx):
+            if not await security.has_permission(ctx):
                 return
             write_cmd("leave")
             await self.stop(ctx)
 
         @client.command(name="play")
         async def _play(ctx, url=""):
-            if not security.has_permission(ctx):
+            if not await security.has_permission(ctx):
                 return
             write_cmd("play")
             if url == "":
@@ -28,14 +28,14 @@ class AudioPlayer:
 
         @client.command(name="pause")
         async def _pause(ctx):
-            if not security.has_permission(ctx):
+            if not await security.has_permission(ctx):
                 return
             write_cmd("pause")
             await self.pause(ctx)
 
         @client.command(name="resume")
         async def _resume(ctx):
-            if not security.has_permission(ctx):
+            if not await security.has_permission(ctx):
                 return
             write_cmd("resume")
             await self.resume(ctx)

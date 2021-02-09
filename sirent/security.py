@@ -1,7 +1,14 @@
 from sirent.administration import get_conf
 
 
-def has_permission(ctx):
+async def has_permission(ctx, level="", callback=True):
+    current_id = ctx.message.author.id
+    conf = get_conf()
+    if level == "":
+        permission_level = conf["security"]["level"]
+    else:
+        permission_level = level
+
     def is_dev():
         return "dev" in [y.name.lower() for y in ctx.message.author.roles]
 
@@ -15,19 +22,17 @@ def has_permission(ctx):
                 return True
         return False
 
-    current_id = ctx.message.author.id
-    conf = get_conf()
-
-    if conf["security"]["level"] == 0:
+    if permission_level == 0:
         return True
-    elif conf["security"]["level"] == 1:
+    elif permission_level == 1:
         if is_dev() or is_intern() or is_security():
             return True
-    elif conf["security"]["level"] == 2:
+    elif permission_level == 2:
         if is_dev() or is_security():
             return True
-    elif conf["security"]["level"] == 3:
+    elif permission_level == 3:
         if is_security():
             return True
-    else:
-        return False
+    if callback:
+        await ctx.channel.send(f'The permission level ({conf["security"]["level"]}) is to high')
+    return False

@@ -7,7 +7,7 @@ class Information:
     def __init__(self, client):
         @client.command(name="ping")
         async def _ping(ctx):
-            if not security.has_permission(ctx):
+            if not await security.has_permission(ctx):
                 return
             write_cmd("ping")
             ping_ = client.latency
@@ -17,7 +17,7 @@ class Information:
 
         @client.command(name="time")
         async def _time(ctx):
-            if not security.has_permission(ctx):
+            if not await security.has_permission(ctx):
                 return
             write_cmd("time")
             await ctx.channel.send(get_time())
