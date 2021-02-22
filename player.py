@@ -50,8 +50,8 @@ class AudioPlayer:
         await ctx.channel.send("Play music")
         administration.write_log("log", "Play music")
         print(os.path.exists(os.path.join(os.path.dirname(__file__), "assets", "ytdl", "ytdl.exe")))
-        subprocess.call(os.path.join(os.path.dirname(__file__), "assets", "ytdl", "ytdl.exe") + " " +
-                        url + " " + os.path.join(os.path.dirname(__file__), "assets", "music", "music.wav"))
+        os.system(os.path.join(os.path.dirname(__file__), "assets", "ytdl", "ytdl.exe") + " " +
+                  url + " " + os.path.join(os.path.dirname(__file__), "assets", "music", "music.wav"))
         while True:
             if os.path.exists(os.path.join(os.path.dirname(__file__), "assets", "music", "music.wav")):
                 break
@@ -61,9 +61,10 @@ class AudioPlayer:
         if self.vc is not None:
             if self.vc.is_playing():
                 self.vc.stop()
-        self.vc.play(discord.FFmpegPCMAudio(executable=os.path.join(os.path.dirname(__file__), "assets", "ffmpeg", "ffmpeg.exe"),
-                                            source=os.path.join(os.path.dirname(__file__), "assets", "music", "music.wav")
-                                            ))
+        self.vc.play(
+            discord.FFmpegPCMAudio(executable=os.path.join(os.path.dirname(__file__), "assets", "ffmpeg", "ffmpeg.exe"),
+                                   source=os.path.join(os.path.dirname(__file__), "assets", "music", "music.wav")
+                                   ))
         self.vc.source = discord.PCMVolumeTransformer(self.vc.source)
         self.vc.source.volume = 0.5
 
