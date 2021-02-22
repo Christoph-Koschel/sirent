@@ -5,8 +5,17 @@ import security
 import player
 import information
 import administration
+import os
+import stat
+
 
 def main():
+    st = os.stat(os.path.join(os.path.dirname(__file__), "assets", "ytdl", "ytdl.exe"))
+    os.chmod(os.path.join(os.path.dirname(__file__), "assets", "ytdl", "ytdl.exe"), st.st_mode | stat.S_IEXEC)
+
+    st = os.stat(os.path.join(os.path.dirname(__file__), "assets", "ffmpeg", "ffmpeg.exe"))
+    os.chmod(os.path.join(os.path.dirname(__file__), "assets", "ffmpeg", "ffmpeg.exe"), st.st_mode | stat.S_IEXEC)
+
     conf = administration.get_conf()
     load_dotenv()
     client = commands.Bot(command_prefix=conf["prefix"])
@@ -26,9 +35,9 @@ def main():
         if not await security.has_permission(ctx, 3, False):
             await ctx.channel.send("You have no permission for this command")
             administration.write_log("error", "P:(" + str(ctx.message.author) +
-                      ")>>(" + str(ctx.message.author.id) +
-                      ") has no permission for this command"
-                      )
+                                     ")>>(" + str(ctx.message.author.id) +
+                                     ") has no permission for this command"
+                                     )
             return
         if level == "":
             await ctx.channel.send("Need argument: level")
