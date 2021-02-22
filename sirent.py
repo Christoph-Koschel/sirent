@@ -5,7 +5,6 @@ import security
 import player
 import information
 import administration
-import os
 
 def main():
     conf = administration.get_conf()
