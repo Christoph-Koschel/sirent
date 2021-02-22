@@ -50,7 +50,7 @@ class AudioPlayer:
         await ctx.channel.send("Play music")
         administration.write_log("log", "Play music")
         print(os.path.exists(os.path.join(os.path.dirname(__file__), "assets", "ytdl", "ytdl.exe")))
-        os.system("START " + os.path.join(os.path.dirname(__file__), "assets", "ytdl", "ytdl.exe") + " " +
+        os.system(os.path.join(os.path.dirname(__file__), "assets", "ytdl", "ytdl.exe") + " " +
                   url + " " + os.path.join(os.path.dirname(__file__), "assets", "music", "music.wav"))
         while True:
             if os.path.exists(os.path.join(os.path.dirname(__file__), "assets", "music", "music.wav")):
