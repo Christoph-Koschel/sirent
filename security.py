@@ -1,4 +1,4 @@
-from sirent.administration import get_conf
+from administration import get_conf
 
 
 async def has_permission(ctx, level="", callback=True):

@@ -50,7 +50,7 @@ class AudioPlayer:
         subprocess.call(os.path.dirname(os.getcwd()) + "\\assets\\ytdl\\ytdl.exe " +
                         url + " " + os.path.dirname(os.getcwd()) + "\\assets\\music\\music.wav")
         while True:
-            if os.path.exists("../assets/music/music.wav"):
+            if os.path.exists("assets/music/music.wav"):
                 break
 
         channel = ctx.author.voice.channel

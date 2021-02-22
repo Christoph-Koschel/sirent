@@ -1,6 +1,6 @@
 import security
-from sirent.stat import get_time, get_ping
-from sirent.administration import write_cmd, write_log, get_conf
+from stat import get_time, get_ping
+from administration import write_cmd, write_log, get_conf
 
 
 class Information:

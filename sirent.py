@@ -2,10 +2,9 @@ from discord.ext import commands
 from dotenv import load_dotenv
 
 import security
-from sirent.administration import get_conf, start_log, write_cmd, write_log, set_conf
-from sirent.player import AudioPlayer
-from sirent.information import Information
-from sirent.stat import get_time
+from administration import get_conf, start_log, write_cmd, write_log, set_conf
+from player import AudioPlayer
+from information import Information
 
 
 def main():
