@@ -5,9 +5,11 @@ import security
 import player
 import information
 import administration
-
+import os
 
 def main():
+    print(os.getcwd())
+
     conf = administration.get_conf()
     load_dotenv()
     client = commands.Bot(command_prefix=conf["prefix"])

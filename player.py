@@ -60,7 +60,7 @@ class AudioPlayer:
         if self.vc is not None:
             if self.vc.is_playing():
                 self.vc.stop()
-        self.vc.play(discord.FFmpegPCMAudio(executable=os.path.dirname(os.getcwd()) + "assets/ffmpeg/ffmpeg.exe",
+        self.vc.play(discord.FFmpegPCMAudio(executable=os.path.dirname(os.getcwd()) + "/assets/ffmpeg/ffmpeg.exe",
                                             source=os.path.dirname(os.getcwd()) + "/assets/music/music.wav"
                                             ))
         self.vc.source = discord.PCMVolumeTransformer(self.vc.source)
