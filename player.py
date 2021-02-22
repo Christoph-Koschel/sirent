@@ -49,6 +49,7 @@ class AudioPlayer:
         administration.write_log("info", f"Play from url: {url}")
         await ctx.channel.send("Play music")
         administration.write_log("log", "Play music")
+        print(os.path.exists(os.path.join(os.path.dirname(__file__), "assets", "ytdl", "ytdl.exe")))
         subprocess.call(os.path.join(os.path.dirname(__file__), "assets", "ytdl", "ytdl.exe") + " " +
                         url + " " + os.path.join(os.path.dirname(__file__), "assets", "music", "music.wav"))
         while True:
