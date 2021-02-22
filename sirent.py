@@ -8,10 +8,6 @@ import administration
 import os
 
 def main():
-    path = os.path.join(os.path.dirname(__file__), "assets", "ytdl", "ytdl.exe")
-    print(path)
-    print(os.path.exists(path))
-
     conf = administration.get_conf()
     load_dotenv()
     client = commands.Bot(command_prefix=conf["prefix"])
