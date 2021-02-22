@@ -7,3 +7,10 @@
 [22.02.2021 13:55:19]::Info->Name tag:Sirent#4063
 [22.02.2021 13:55:27]::Info->Run command: play
 [22.02.2021 13:55:27]::Info->Play from url: https://www.youtube.com/watch?v=lZdv4baNXDI
+---------22.02.2021 13:57:18---------
+[22.02.2021 13:57:18]::Info->Start bot...
+[22.02.2021 13:57:18]::Info->Name tag:Sirent#4063
+[22.02.2021 13:57:23]::Info->Run command: play
+[22.02.2021 13:57:23]::Info->Play from url: https://www.youtube.com/watch?v=lZdv4baNXDI
+[22.02.2021 13:57:31]::Info->Run command: pause
+[22.02.2021 13:57:31]::Error->Pausing the played url
