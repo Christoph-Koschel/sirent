@@ -3,4 +3,3 @@ discord
 discord.py[voice]
 python-dotenv
 PyNaCl
-wkhtmltopdf-pack
