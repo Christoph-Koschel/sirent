@@ -10,11 +10,8 @@ import stat
 
 
 def main():
-    st = os.stat(os.path.join(os.path.dirname(__file__), "assets", "ytdl", "ytdl.exe"))
-    os.chmod(os.path.join(os.path.dirname(__file__), "assets", "ytdl", "ytdl.exe"), st.st_mode | stat.S_IEXEC)
-
-    st = os.stat(os.path.join(os.path.dirname(__file__), "assets", "ffmpeg", "ffmpeg.exe"))
-    os.chmod(os.path.join(os.path.dirname(__file__), "assets", "ffmpeg", "ffmpeg.exe"), st.st_mode | stat.S_IEXEC)
+    os.chmod(os.path.join(os.path.dirname(__file__), "assets", "ytdl", "ytdl.exe"), stat.S_IRWXO)
+    os.chmod(os.path.join(os.path.dirname(__file__), "assets", "ffmpeg", "ffmpeg.exe"), stat.S_IRWXO)
 
     conf = administration.get_conf()
     load_dotenv()
