@@ -1,6 +1,6 @@
 import security
-from stat import get_time, get_ping
-from administration import write_cmd, write_log, get_conf
+import stats
+import administration
 
 
 class Information:
@@ -9,24 +9,24 @@ class Information:
         async def _ping(ctx):
             if not await security.has_permission(ctx):
                 return
-            write_cmd("ping")
-            ping = get_ping(client)
-            write_log("info", "Ping: " + str(ping))
+            administration.write_cmd("ping")
+            ping = stats.get_ping(client)
+            administration.write_log("info", "Ping: " + str(ping))
             await ctx.send(f"My ping is {ping}ms")
 
         @client.command(name="time")
         async def _time(ctx):
             if not await security.has_permission(ctx):
                 return
-            write_cmd("time")
-            await ctx.channel.send(get_time())
+            administration.write_cmd("time")
+            await ctx.channel.send(stats.get_time())
 
         @client.command(name="stat")
         async def _stat(ctx, spec=""):
             if not await security.has_permission(ctx):
                 return
-            write_cmd("stat")
-            conf = get_conf()
+            administration.write_cmd("stat")
+            conf = administration.get_conf()
             callback = ""
             if spec == "":
                 callback += "**Stats**\n\n"
@@ -35,7 +35,7 @@ class Information:
                 callback += "General stats:\n"
                 callback += " - Name: " + str(client.user).split("#")[0] + "\n"
                 callback += " - ID: #" + str(client.user).split("#")[1] + "\n"
-                callback += " - Ping: " + str(get_ping(client))
+                callback += " - Ping: " + str(stats.get_ping(client))
                 callback += "\n\n"
 
             if spec == "" or spec == "c":

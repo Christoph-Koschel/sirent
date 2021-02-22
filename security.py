@@ -1,9 +1,9 @@
-from administration import get_conf
+import administration
 
 
 async def has_permission(ctx, level="", callback=True):
     current_id = ctx.message.author.id
-    conf = get_conf()
+    conf = administration.get_conf()
     if level == "":
         permission_level = conf["security"]["level"]
     else:

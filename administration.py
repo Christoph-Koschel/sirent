@@ -1,5 +1,5 @@
 import json
-from stat import get_time
+import stats
 
 
 def get_conf():
@@ -14,15 +14,15 @@ def set_conf(conf):
 
 def start_log(client):
     with open("assets/log/debug.log", mode="a") as log:
-        log.write("---------" + str(get_time()) + "---------\n")
-        log.write("[{0}]::Info->Start bot...\n".format(get_time()))
-        log.write("[{0}]::Info->Name tag:{1}\n".format(get_time(), client.user))
+        log.write("---------" + str(stats.get_time()) + "---------\n")
+        log.write("[{0}]::Info->Start bot...\n".format(stats.get_time()))
+        log.write("[{0}]::Info->Name tag:{1}\n".format(stats.get_time(), client.user))
         log.close()
 
 
 def write_cmd(cmd):
     with open("assets/log/debug.log", mode="a") as log:
-        log.write("[{0}]::Info->Run command: {1}\n".format(get_time(), cmd))
+        log.write("[{0}]::Info->Run command: {1}\n".format(stats.get_time(), cmd))
         log.close()
 
 
@@ -36,5 +36,5 @@ def write_log(flag, text):
             elif flag == "error":
                 flag = "Error"
 
-            log.write("[{0}]::{1}->{2}\n".format(get_time(), flag, text))
+            log.write("[{0}]::{1}->{2}\n".format(stats.get_time(), flag, text))
             log.close()
