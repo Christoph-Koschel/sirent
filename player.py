@@ -47,8 +47,10 @@ class AudioPlayer:
 
     async def play(self, ctx, url):
         administration.write_log("info", f"Play from url: {url}")
-        subprocess.call(os.path.dirname(os.getcwd()) + "\\assets\\ytdl\\ytdl.exe " +
-                        url + " " + os.path.dirname(os.getcwd()) + "\\assets\\music\\music.wav")
+        await ctx.channel.send("Play music")
+        administration.write_log("log", "Play music")
+        subprocess.call(os.path.dirname(os.getcwd()) + "assets/ytdl/ytdl.exe " +
+                        url + " " + os.path.dirname(os.getcwd()) + "assets/music/music.wav")
         while True:
             if os.path.exists("assets/music/music.wav"):
                 break
@@ -58,8 +60,8 @@ class AudioPlayer:
         if self.vc is not None:
             if self.vc.is_playing():
                 self.vc.stop()
-        self.vc.play(discord.FFmpegPCMAudio(executable=os.path.dirname(os.getcwd()) + "\\assets\\ffmpeg\\ffmpeg.exe",
-                                            source=os.path.dirname(os.getcwd()) + "\\assets\\music\\music.wav"
+        self.vc.play(discord.FFmpegPCMAudio(executable=os.path.dirname(os.getcwd()) + "assets/ffmpeg/ffmpeg.exe",
+                                            source=os.path.dirname(os.getcwd()) + "/assets/music/music.wav"
                                             ))
         self.vc.source = discord.PCMVolumeTransformer(self.vc.source)
         self.vc.source.volume = 0.5
