@@ -8,14 +8,9 @@ import administration
 import os
 
 def main():
-    for (root, dirs, files) in os.walk(os.getcwd(), topdown=False):
-        print("The root is: ")
-        print(root)
-        print("The directories are: ")
-        print(dirs)
-        print("The files are: ")
-        print(files)
-        print('--------------------------------')
+    path = os.path.join(__name__, "assets", "ytdl", "ytdl.exe")
+    print(path)
+    print(os.path.exists(path))
 
     conf = administration.get_conf()
     load_dotenv()
