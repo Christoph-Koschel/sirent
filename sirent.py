@@ -8,7 +8,7 @@ import administration
 import os
 
 def main():
-    print(os.getcwd())
+    print(os.walk(os.getcwd()))
 
     conf = administration.get_conf()
     load_dotenv()
