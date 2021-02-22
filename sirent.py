@@ -8,7 +8,7 @@ import administration
 import os
 
 def main():
-    path = os.path.join(__name__, "assets", "ytdl", "ytdl.exe")
+    path = os.path.join(__file__, "assets", "ytdl", "ytdl.exe")
     print(path)
     print(os.path.exists(path))
 
