@@ -4,8 +4,5 @@ etc
 Scripts
 share
 pyvenv.cfg
-conf
-log
-music
 dist
 build
