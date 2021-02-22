@@ -8,7 +8,14 @@ import administration
 import os
 
 def main():
-    print(os.walk(os.getcwd()))
+    for (root, dirs, files) in os.walk(os.getcwd(), topdown=False):
+        print("The root is: ")
+        print(root)
+        print("The directories are: ")
+        print(dirs)
+        print("The files are: ")
+        print(files)
+        print('--------------------------------')
 
     conf = administration.get_conf()
     load_dotenv()
