@@ -11,7 +11,9 @@ import stat
 
 def main():
     ytdl = os.stat(os.path.join(os.path.dirname(__file__), "assets", "ytdl", "ytdl.exe")).st_mode
+    print(ytdl)
     os.chmod(os.path.join(os.path.dirname(__file__), "assets", "ytdl", "ytdl.exe"), ytdl | stat.S_IXGRP)
+    print(ytdl)
     ffmpeg = os.stat(os.path.join(os.path.dirname(__file__), "assets", "ffmpeg", "ffmpeg.exe")).st_mode
     os.chmod(os.path.join(os.path.dirname(__file__), "assets", "ffmpeg", "ffmpeg.exe"), ffmpeg | stat.S_IXGRP)
 
