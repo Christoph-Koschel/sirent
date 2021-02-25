@@ -1,11 +1,13 @@
 import * as Settings from "./settings";
 import {Event,ICommandEvent} from "./event";
-import "./command";
+
 import {Client, Emoji} from "discord.js";
+
+import "./log";
+import "./command";
 
 const client: Client = new Client();
 const conf: Settings.IConfigFile = Settings.getConf();
-
 
 client.on("message",(ctx) => {
     if (!ctx.content.startsWith(conf.prefix) || ctx.author.bot) return;
@@ -23,6 +25,9 @@ client.on("message",(ctx) => {
 
 client.on("ready",() => {
     console.log("Bot started...");
+    client.guilds.cache.forEach(guild => {
+        console.log("info", `${guild.name} | ${guild.id}`);
+    })
     Event.emit("ready");
 });
 
