@@ -1,5 +1,0 @@
-discord.py
-discord
-discord.py[voice]
-python-dotenv
-PyNaCl

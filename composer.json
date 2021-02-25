@@ -1,7 +1,0 @@
-{
-  "scripts": {
-    "compile": [
-      "chmod 777 assets/"
-    ]
-  }
-}
