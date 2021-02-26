@@ -3,7 +3,7 @@ import {hasPermission, isModuleOn} from "./security";
 import {MusicPlayer} from "./player";
 import {getConf, IConfigFile, setConf} from "./settings";
 
-console.log("load Module")
+console.log("Load command");
 const event = new Event();
 
 event.on("ready", (event) => {

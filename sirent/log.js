@@ -18,29 +18,27 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.setConf = exports.getConf = void 0;
-var path = __importStar(require("path"));
+var path_1 = __importDefault(require("path"));
 var fs = __importStar(require("fs"));
-var crypto_1 = require("./crypto");
-var confPath = path.join(__dirname, "..", "assets", "conf", "conf.hash");
-function getConf() {
-    var hash = fs.readFileSync(confPath, "utf-8");
-    hash = hash.replace(/\n/gi, "");
-    if (process.env.HASH_PASSWORD === undefined) {
-        console.log("ENV HASH_PASSWORD not exists");
-        process.exit(0);
-    }
-    return JSON.parse(crypto_1.Hashed.decode(hash, process.env.HASH_PASSWORD));
+var write = global.console.log;
+global.console.log = function (data, type) {
+    if (type === void 0) { type = "log"; }
+    writeLog(data, type);
+    write(data);
+};
+function writeLog(data, type) {
+    var date = new Date();
+    new Intl.DateTimeFormat().resolvedOptions().timeZone;
+    var dateString = date.getDay() + "-" + date.getMonth() + "-" + date.getFullYear();
+    // @ts-ignore
+    dateString += " " + date.getHours() + ":" + date.getMinutes() + "." + date.getSeconds() + " " + date.toString().match(/\(([A-Za-z\s].*)\)/)[1];
+    var writeString = "[" + dateString + "]:" + type + ":" + data + "\n";
+    fs.writeFileSync(path_1.default.join(__dirname, "..", "assets", "log", "debug.log"), writeString, {
+        flag: "a"
+    });
 }
-exports.getConf = getConf;
-function setConf(conf) {
-    if (process.env.HASH_PASSWORD === undefined) {
-        console.log("ENV HASH_PASSWORD not exists");
-        process.exit(0);
-    }
-    var hash = crypto_1.Hashed.encode(JSON.stringify(conf, null, 4), process.env.HASH_PASSWORD);
-    fs.writeFileSync(confPath, hash);
-}
-exports.setConf = setConf;
-//# sourceMappingURL=settings.js.map
+//# sourceMappingURL=log.js.map

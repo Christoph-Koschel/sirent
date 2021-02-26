@@ -4,7 +4,7 @@ var event_1 = require("./event");
 var security_1 = require("./security");
 var player_1 = require("./player");
 var settings_1 = require("./settings");
-console.log("load Module");
+console.log("Load command");
 var event = new event_1.Event();
 event.on("ready", function (event) {
     var player = new player_1.MusicPlayer();
@@ -63,7 +63,7 @@ event.on("ready", function (event) {
                 if (security_1.hasPermission(ctx, 3)) {
                     if (client.args[1] !== "0" && client.args[1] !== "1" &&
                         client.args[1] !== "2" && client.args[1] !== "3") {
-                        ctx.channel.send("Select an level between 0 and 3");
+                        ctx.channel.send("Select a level between 0 and 3");
                     }
                     else {
                         var oldLevel = conf.security.level;
