@@ -25,16 +25,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var path_1 = __importDefault(require("path"));
 var fs = __importStar(require("fs"));
 var write = global.console.log;
-global.console.log = function (type) {
+global.console.log = function (data, type) {
     if (type === void 0) { type = "log"; }
-    var data = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-        data[_i - 1] = arguments[_i];
-    }
-    for (var i in data) {
-        writeLog(data[i], type);
-        write(data[i]);
-    }
+    writeLog(data, type);
+    write(data);
 };
 function writeLog(data, type) {
     var date = new Date();
@@ -42,7 +36,7 @@ function writeLog(data, type) {
     var dateString = date.getDay() + "-" + date.getMonth() + "-" + date.getFullYear();
     // @ts-ignore
     dateString += " " + date.getHours() + ":" + date.getMinutes() + "." + date.getSeconds() + " " + date.toString().match(/\(([A-Za-z\s].*)\)/)[1];
-    var writeString = dateString + ":" + type + ":" + data + "\n";
+    var writeString = "[" + dateString + "]:" + type + ":" + data + "\n";
     fs.writeFileSync(path_1.default.join(__dirname, "..", "assets", "log", "debug.log"), writeString, {
         flag: "a"
     });

@@ -22,8 +22,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Settings = __importStar(require("./settings"));
 var event_1 = require("./event");
 var discord_js_1 = require("discord.js");
+var dotenv = __importStar(require("dotenv"));
 require("./log");
 require("./command");
+dotenv.config();
 var client = new discord_js_1.Client();
 var conf = Settings.getConf();
 client.on("message", function (ctx) {
@@ -42,7 +44,7 @@ client.on("message", function (ctx) {
 client.on("ready", function () {
     console.log("Bot started...");
     client.guilds.cache.forEach(function (guild) {
-        console.log("info", guild.name + " | " + guild.id);
+        console.log(guild.name + " | " + guild.id);
     });
     event_1.Event.emit("ready");
 });

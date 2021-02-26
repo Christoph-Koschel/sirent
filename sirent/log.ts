@@ -2,11 +2,9 @@ import path from "path";
 import * as fs from "fs";
 
 const write = global.console.log;
-global.console.log = (type: "log" | "error" | "info" = "log", ...data: any[]) => {
-    for (let i in data) {
-        writeLog(data[i], type);
-        write(data[i]);
-    }
+global.console.log = (data: any[], type: "log" | "error" | "info" = "log") => {
+        writeLog(data, type);
+        write(data);
 }
 
 function writeLog(data, type) {

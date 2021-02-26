@@ -22,13 +22,25 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.setConf = exports.getConf = void 0;
 var path = __importStar(require("path"));
 var fs = __importStar(require("fs"));
-var confPath = path.join(__dirname, "..", "assets", "conf", "conf.json");
+var crypto_1 = require("./crypto");
+var confPath = path.join(__dirname, "..", "assets", "conf", "conf.hash");
 function getConf() {
-    return JSON.parse(fs.readFileSync(confPath, "utf8"));
+    var hash = fs.readFileSync(confPath, "utf-8");
+    hash = hash.replace(/\n/gi, "");
+    if (process.env.HASH_PASSWORD === undefined) {
+        console.log("ENV HASH_PASSWORD not exists");
+        process.exit(0);
+    }
+    return JSON.parse(crypto_1.Hashed.decode(hash, process.env.HASH_PASSWORD));
 }
 exports.getConf = getConf;
 function setConf(conf) {
-    fs.writeFileSync(confPath, JSON.stringify(conf, null, 4));
+    if (process.env.HASH_PASSWORD === undefined) {
+        console.log("ENV HASH_PASSWORD not exists");
+        process.exit(0);
+    }
+    var hash = crypto_1.Hashed.encode(JSON.stringify(conf, null, 4), process.env.HASH_PASSWORD);
+    fs.writeFileSync(confPath, hash);
 }
 exports.setConf = setConf;
 //# sourceMappingURL=settings.js.map
