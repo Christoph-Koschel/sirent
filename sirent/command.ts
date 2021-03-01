@@ -3,7 +3,7 @@ import {hasPermission, isModuleOn} from "./security";
 import {MusicPlayer} from "./player";
 import {getConf, IConfigFile, setConf} from "./settings";
 
-console.log("Load command");
+console.log("Load command", "info");
 const event = new Event();
 
 event.on("ready", (event) => {
@@ -38,6 +38,8 @@ event.on("ready", (event) => {
                     } else {
                         ctx.channel.send("You have no permission to do this");
                     }
+                } else {
+                    ctx.channel.send("Need the parameter URL");
                 }
             } else if (client.args[0] === "pause") {
                 if (hasPermission(ctx)) {
@@ -48,6 +50,22 @@ event.on("ready", (event) => {
                     }
                 } else {
                     ctx.channel.send("You have no permission to do this");
+                }
+            } else if (client.args[0] === "loop") {
+                if (client.args[1] === "true" || client.args[1] === "false") {
+                    if (hasPermission(ctx)) {
+                        if (isModuleOn("player")) {
+                            player.setLoop((client.args[1] === "true")).then(() => {
+                                ctx.channel.send("Loop mode updated");
+                            });
+                        } else {
+                            ctx.channel.send("Module is not on");
+                        }
+                    } else {
+                        ctx.channel.send("You have no permission to do this");
+                    }
+                } else {
+                    ctx.channel.send("The parameter must be have the value \"true\" or \"false\"");
                 }
             }
         }

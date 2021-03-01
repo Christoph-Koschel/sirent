@@ -19,7 +19,6 @@ client.on("message",(ctx) => {
     const args = ctx.content.slice(conf.prefix.length).trim().split(' ');
     // @ts-ignore
     const command = args.shift().toLowerCase();
-    console.log(args);
     const argTemp: ICommandEvent = {
         args: args,
         bot: client
@@ -30,8 +29,8 @@ client.on("message",(ctx) => {
 client.on("ready",() => {
     console.log("Bot started...");
     client.guilds.cache.forEach(guild => {
-        console.log(`${guild.name} | ${guild.id}`);
-    })
+        console.log(`${guild.name} | ${guild.id}`, "info");
+    });
     Event.emit("ready");
 });
 
